@@ -46,3 +46,10 @@ class ReplyDetail(APIView):
         reply = self.get_reply(pk)
         reply.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class CommentReply(APIView):
+
+    def get(self, request, comment_id):
+        replies = Reply.objects.filter(comment_id__exact=comment_id)
+        serializer = ReplySerializer(replies, many=True)
+        return Response(serializer.data)
