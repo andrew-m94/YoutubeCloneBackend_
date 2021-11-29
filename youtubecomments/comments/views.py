@@ -46,3 +46,10 @@ class CommentDetail(APIView):
         comment = self.get_comment(pk)
         comment.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+class VideoComments(APIView):
+
+    def get(self, request, video_id):
+        comments = Comment.objects.filter(video_id__exact=video_id)
+        serializer = CommentSerializer(comments, many=True)
+        return Response(serializer.data)
