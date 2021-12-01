@@ -5,4 +5,4 @@ urlpatterns = [
     path('comments/', views.CommentList.as_view()),
     path('comments/<int:pk>/', views.CommentDetail.as_view()),
     path('comments/<slug:video_id>/', views.VideoComments.as_view()),
-]
+]   
